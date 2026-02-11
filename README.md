@@ -77,13 +77,13 @@ json
 }
 ```
 <img width="1365" height="580" alt="image" src="https://github.com/user-attachments/assets/d5ff7e4e-64a1-43b4-bd1a-662562d3945c" />
-**Editor Page**
+# Editor Page
 <img width="1348" height="631" alt="image" src="https://github.com/user-attachments/assets/29f8c34c-19a5-4706-832c-e55d2a13eb44" />
-**Preview the story**
+# Preview the story
 <img width="1365" height="628" alt="image" src="https://github.com/user-attachments/assets/a58c3f96-bbfc-4ba1-add9-f3e197736817" />
-**Creating new story**
+# Creating new story
 <img width="1364" height="638" alt="image" src="https://github.com/user-attachments/assets/86a4ff8d-bc29-4958-9cd6-cd95a8e0dd3d" />
-**Delete Option**
+# Delete Option
 <img width="1353" height="676" alt="image" src="https://github.com/user-attachments/assets/f329fbef-0107-4eb8-bf4a-ad0ed92b127e" />
-**Export in Markdown (3 Options there - Markdown, HTML, JSON)**
+# Export in Markdown (3 Options there - Markdown, HTML, JSON)
 <img width="1365" height="678" alt="image" src="https://github.com/user-attachments/assets/4f34ec71-f349-4a7b-a1dc-fb67d5f81caf" />
