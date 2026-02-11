@@ -2,9 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChronicleForge - Editor</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
+    <div class="editor-header">
+        <div class="container">
+            <div class="header-content">
+                <h1>📖 {{ story.title }}</h1>
+                <div class="header-actions">
+                    <button id="saveStoryBtn" class="btn btn-primary">💾 Save</button>
+                    <button id="addNodeBtn" class="btn btn-secondary">➕ Add Node</button>
+                    <div class="export-dropdown">
+                        <button class="btn">📤 Export</button>
+                        <div class="dropdown-content">
+                            <a href="#" data-format="json">JSON</a>
+                            <a href="#" data-format="markdown">Markdown</a>
+                            <a href="#" data-format="html">HTML</a>
+                        </div>
+                    </div>
+                    <a href="/view/{{ story_id }}" class="btn" target="_blank">👁️ Preview</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="editor-container">
+        <div class="sidebar">
+            <div class="nodes-panel">
+                <h3>Story Nodes</h3>
+                <div id="nodesList" class="nodes-list">
+                    <!-- Nodes will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="visualization-panel">
+            <div id="storyGraph" class="story-graph"></div>
+        </div>
+
+        <div class="editor-panel">
+            <div id="nodeEditor" class="node-editor">
+                <h3>Select a node to edit</h3>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.storyData = {{ story|tojson }};
+        window.storyId = "{{ story_id }}";
+    </script>
+    <script src="/static/js/storymap.js"></script>
+    <script src="/static/js/main.js"></script>
 </body>
 </html>
