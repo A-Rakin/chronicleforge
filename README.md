@@ -86,4 +86,5 @@ json
  Delete Option
 <img width="1353" height="676" alt="image" src="https://github.com/user-attachments/assets/f329fbef-0107-4eb8-bf4a-ad0ed92b127e" />
  Export in Markdown (3 Options there - Markdown, HTML, JSON)
-<img width="1365" height="678" alt="image" src="https://github.com/user-attachments/assets/4f34ec71-f349-4a7b-a1dc-fb67d5f81caf" />
+<img width="765" height="252" alt="image" src="https://github.com/user-attachments/assets/03652553-1330-4e76-a6ec-36dd6c870844" />
+
