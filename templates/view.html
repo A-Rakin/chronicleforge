@@ -2,9 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ story.title }} - ChronicleForge</title>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
-<body>
+<body class="story-viewer">
+    <div class="viewer-header">
+        <div class="container">
+            <a href="/" class="back-link">← ChronicleForge</a>
+            <a href="/editor/{{ story_id }}" class="btn btn-small">Edit Story</a>
+        </div>
+    </div>
 
+    <div class="story-container">
+        <div class="story-content" id="storyContent">
+            <div class="story-node" id="storyNode">
+                <h1>{{ story.title }}</h1>
+                <div id="nodeContent"></div>
+                <div id="choices"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const storyData = {{ story|tojson }};
+        let currentNode = storyData.starting_node || 'start';
+
+        function renderNode(nodeId) {
+            const node = storyData.nodes[nodeId];
+            document.getElementById('nodeContent').innerHTML = `<p>${node.content}</p>`;
+
+            const choicesDiv = document.getElementById('choices');
+            choicesDiv.innerHTML = '';
+
+            if (node.choices && node.choices.length > 0) {
+                node.choices.forEach(choice => {
+                    const button = document.createElement('button');
+                    button.className = 'choice-btn';
+                    button.textContent = choice.text;
+                    button.onclick = () => renderNode(choice.target);
+                    choicesDiv.appendChild(button);
+                });
+            } else {
+                const endMsg = document.createElement('p');
+                endMsg.className = 'story-end';
+                endMsg.textContent = '— The End —';
+                choicesDiv.appendChild(endMsg);
+            }
+        }
+
+        window.onload = () => renderNode(currentNode);
+    </script>
 </body>
 </html>
