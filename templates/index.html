@@ -2,9 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChronicleForge - Interactive Story Builder</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="hero">
+        <div class="container">
+            <h1 class="logo">📖 ChronicleForge</h1>
+            <p class="tagline">Forge your own adventures</p>
+        </div>
+    </div>
 
+    <div class="container">
+        <div class="actions">
+            <button id="createStoryBtn" class="btn btn-primary">
+                ✨ Create New Story
+            </button>
+        </div>
+
+        <div class="stories-grid" id="storiesGrid">
+            <!-- Stories will be loaded here -->
+        </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
 </body>
 </html>
