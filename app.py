@@ -172,6 +172,14 @@ def export_story(story_id, format):
 
         return html_content, 200, {'Content-Type': 'text/html'}
 
+@app.route('/api/stories/<story_id>', methods=['DELETE'])
+def delete_story(story_id):
+    stories = load_stories()
+    if story_id in stories:
+        del stories[story_id]
+        save_stories(stories)
+        return jsonify({'success': True})
+    return jsonify({'error': 'Story not found'}), 404
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
