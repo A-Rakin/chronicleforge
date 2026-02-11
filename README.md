@@ -1,4 +1,4 @@
-<img width="1353" height="676" alt="image" src="https://github.com/user-attachments/assets/d2219073-fa9b-48a7-b1d6-937fb28628cb" /># 📖 ChronicleForge
+### 📖 ChronicleForge
 
 ### *Forge your own adventures*
 
