@@ -109,3 +109,69 @@ def add_node(story_id):
         save_stories(stories)
         return jsonify({'success': True, 'node_id': node_id})
     return jsonify({'error': 'Story not found'}), 404
+
+
+@app.route('/api/stories/<story_id>/choice', methods=['POST'])
+def add_choice(story_id):
+    stories = load_stories()
+    if story_id in stories:
+        from_node = request.json.get('from_node')
+        to_node = request.json.get('to_node')
+        choice_text = request.json.get('choice_text', 'Continue...')
+
+        choice_id = str(uuid.uuid4())[:6]
+        choice = {
+            'id': choice_id,
+            'text': choice_text,
+            'target': to_node
+        }
+
+        if from_node in stories[story_id]['nodes']:
+            stories[story_id]['nodes'][from_node]['choices'].append(choice)
+            save_stories(stories)
+            return jsonify({'success': True, 'choice_id': choice_id})
+
+    return jsonify({'error': 'Failed to add choice'}), 400
+
+
+@app.route('/api/stories/<story_id>/export/<format>', methods=['GET'])
+def export_story(story_id, format):
+    stories = load_stories()
+    story = stories.get(story_id)
+
+    if not story:
+        return jsonify({'error': 'Story not found'}), 404
+
+    if format == 'json':
+        return jsonify(story)
+
+    elif format == 'markdown':
+        md_content = f"# {story['title']}\n\n"
+        for node_id, node in story['nodes'].items():
+            md_content += f"## Node: {node_id}\n"
+            md_content += f"{node['content']}\n\n"
+            if node['choices']:
+                md_content += "Choices:\n"
+                for choice in node['choices']:
+                    md_content += f"- {choice['text']} → {choice['target']}\n"
+            md_content += "\n---\n\n"
+
+        return md_content, 200, {'Content-Type': 'text/markdown'}
+
+    elif format == 'html':
+        html_content = f"<h1>{story['title']}</h1>\n"
+        for node_id, node in story['nodes'].items():
+            html_content += f"<h2>Node: {node_id}</h2>\n"
+            html_content += f"<p>{node['content']}</p>\n"
+            if node['choices']:
+                html_content += "<ul>\n"
+                for choice in node['choices']:
+                    html_content += f"<li>{choice['text']} → {choice['target']}</li>\n"
+                html_content += "</ul>\n"
+            html_content += "<hr>\n"
+
+        return html_content, 200, {'Content-Type': 'text/html'}
+
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)
